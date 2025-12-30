@@ -289,7 +289,7 @@ function App() {
               <div className="feature-icon">🌟</div>
               <h3>Curated Quality</h3>
               <p>Only the best and most popular websites in our database</p>
-            </div>
+            </div> 
           </div>
         </div>
       </section>
