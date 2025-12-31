@@ -200,7 +200,6 @@ const express = require('express');
 const router = express.Router();
 const Website = require('../models/Website');
 
-/* -------------------- SEARCH ENGINE CORE -------------------- */
 
 // Normalize text
 function normalize(text) {
@@ -278,12 +277,12 @@ function calculateRelevanceScore(query, website) {
   const category = normalize(website.category);
   const tags = website.tags.map(t => normalize(t));
 
-  /* ---------------- EXACT PHRASE BOOST ---------------- */
+
   if (name.includes(queryText)) score += 80;
   if (description.includes(queryText)) score += 60;
   if (category.includes(queryText)) score += 50;
 
-  /* ---------------- WORD + FUZZY MATCH ---------------- */
+
   queryWords.forEach(word => {
     // Name (highest authority)
     if (name.includes(word)) score += 25;
@@ -311,7 +310,7 @@ function calculateRelevanceScore(query, website) {
     });
   });
 
-  /* ---------------- PROXIMITY BOOST ---------------- */
+ 
   const joinedText = `${name} ${description}`;
   let lastIndex = -1;
   queryWords.forEach(word => {
@@ -322,13 +321,13 @@ function calculateRelevanceScore(query, website) {
     if (idx !== -1) lastIndex = idx;
   });
 
-  /* ---------------- POPULARITY (SOFT POWER) ---------------- */
+ 
   score += Math.log10(website.popularity + 1) * 12;
 
   return score;
 }
 
-/* -------------------- SEARCH ROUTE -------------------- */
+
 
 router.post('/', async (req, res) => {
   try {
@@ -357,7 +356,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-/* -------------------- CRUD ROUTES -------------------- */
 
 router.post('/add-website', async (req, res) => {
   try {
