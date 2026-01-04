@@ -3,7 +3,6 @@ const router = express.Router();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Website = require('../models/Website');
 
-// Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Search endpoint using FREE Gemini AI
