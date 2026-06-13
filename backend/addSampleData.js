@@ -2418,4 +2418,8 @@ async function addSampleData() {
   }
 }
 
-addSampleData();
+if (require.main === module) {
+  addSampleData();
+}
+
+module.exports = { sampleWebsites, addSampleData };
